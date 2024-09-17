@@ -12,7 +12,8 @@ class BookController extends Controller
      */
     public function index()
     {
-        //
+        $books = Book::all();
+        return view('books.index', compact('books'));
     }
 
     /**
@@ -36,8 +37,6 @@ class BookController extends Controller
             'author_email' => 'required|string|max:50',
             'published_date' => 'nullable|date',
         ]);
-
-        dd($validated);
 
         $book = Book::create([
             'title' => $validated['title'],
